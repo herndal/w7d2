@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MusicApp</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  </head>
+  <body>
+  <header>
+    <section class="authentication">
+    <h1>Music App</h1>
+    <div>
+      <% if current_user %>
+        <form action="<%= session_url %>" method = "GET">
+          <input type="hidden" name="_method" value="DELETE">
+          <input type="submit" value="Logout">
+        </form>
+      <% else %>
+        <a href="<%= new_session_url %>">Log in</a>
+        <a href="<%= new_user_url %>"> Sign up</a>
+      <% end %>
+    </div>
+    </section>
+    <style>
+      .authentication {
+        display: flex;
+        justify-content: space-between;
+      }
+      a {
+        background-color: greenyellow;
+        border-radius: 5px;
+      }
+    </style>
+  </header>
+    <%= yield %>
+  </body>
+
+</html>
